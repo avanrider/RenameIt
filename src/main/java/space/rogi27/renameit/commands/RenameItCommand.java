@@ -25,7 +25,7 @@ public class RenameItCommand {
     public static LiteralArgumentBuilder<ServerCommandSource> registerWithName(String name) {
         LiteralArgumentBuilder<ServerCommandSource> item = literal(name).requires(Permissions.require("renameit.use", true))
                 .then(literal("name")
-                        .requires(Permissions.require("renameit.name", 2))
+                        .requires(Permissions.require("renameit.name", 0))
                         .then(argument("name", StringArgumentType.greedyString())
                                 .suggests((context, builder) -> builder.suggest("Item with <red>cool name</red>").buildFuture())
                                 .executes(RenameCommand::setName)
@@ -39,16 +39,16 @@ public class RenameItCommand {
                         )
                 )
                 .then(literal("lore")
-                        .requires(Permissions.require("renameit.lore", 2))
+                        .requires(Permissions.require("renameit.lore", 0))
                         .then(literal("add")
-                                .requires(Permissions.require("renameit.lore.add", 2))
+                                .requires(Permissions.require("renameit.lore.add", 0))
                                 .then(argument("text", StringArgumentType.greedyString())
                                         .suggests((context, builder) -> builder.suggest("Your new <red>line</red> of lore").buildFuture())
                                         .executes(LoreCommand::addLore)
                                 )
                         )
                         .then(literal("set")
-                                .requires(Permissions.require("renameit.lore.set", 2))
+                                .requires(Permissions.require("renameit.lore.set", 0))
                                 .then(argument("line", IntegerArgumentType.integer(1))
                                         .suggests((context, builder) -> {
                                             if (context.getSource().getEntity().isPlayer()) {
@@ -71,7 +71,7 @@ public class RenameItCommand {
                                 )
                         )
                         .then(literal("delete")
-                                .requires(Permissions.require("renameit.lore.delete", 2))
+                                .requires(Permissions.require("renameit.lore.delete", 0))
                                 .then(argument("line", IntegerArgumentType.integer(1))
                                         .suggests((context, builder) -> {
                                             if (context.getSource().getEntity().isPlayer()) {
